@@ -6,11 +6,9 @@ set rtp+=~/.vim/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 let mapleader=","
-" Automatic reloading of .vimrc
 "plugin pymode for python3 syntax check
 let g:pymode_python = 'python3'
 
-" move between bufffers
 "split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -137,3 +135,6 @@ set laststatus=2
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+let g:pymode_trim_whitespaces = 1
+let g:pymode_doc_bind = 'K'
+let g:pymode_virtualenv = 1
