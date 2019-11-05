@@ -19,11 +19,6 @@ nnoremap <C-H> <C-W><C-H>
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 
-"custom keys
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"
-
-
 " Showing line numbers and length
 set number  " show line numbers
 set tw=79   " width of document (used by gd)
@@ -76,10 +71,6 @@ set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
 
-let g:jedi#usages_command = "<leader>z"
-let g:jedi#popup_on_dot = 0
-let g:jedi#popup_select_first = 0
-map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
@@ -148,3 +139,4 @@ let g:pymode_trim_whitespaces = 1
 let g:pymode_doc_bind = 'K'
 let g:pymode_virtualenv = 1
 let g:SimpylFold_docstring_preview = 0
+nnoremap <buffer> <leader>e :w <bar> :exec '! clear; python3' shellescape(@%, 1)<cr>
