@@ -114,6 +114,16 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 
+
+inoremap <leader><leader> <Esc>
+vnoremap <leader><leader> <Esc>
+
+nnoremap <leader>w :wq!<cr>
+nnoremap <leader>q :q!<cr>
+nnoremap <leader>s :w<cr>
+
+
+
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
 nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
