@@ -113,7 +113,6 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -138,3 +137,4 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 let g:pymode_trim_whitespaces = 1
 let g:pymode_doc_bind = 'K'
 let g:pymode_virtualenv = 1
+let g:SimpylFold_docstring_preview = 0
