@@ -1,0 +1,18 @@
+1. Pathogen for managing your plugins in autoload folder
+Path: ~/.vim/autoload
+
+2. Plugins list:
+Path : /home/punit144/.vim/bundle
+
+/ctrlp.vim
+/gruvbox
+/jedi-vim
+/molokai
+/nerdtree
+/powerline
+/python-mode
+/SimpylFold
+/vim-airline
+/vim-virtualenv
+/YouCompleteMe
+/Zenburn
