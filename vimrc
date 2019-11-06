@@ -6,8 +6,6 @@ set rtp+=~/.vim/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
 let mapleader=","
-"plugin pymode for python3 syntax check
-let g:pymode_python = 'python3'
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -51,10 +49,6 @@ set noswapfile
 
 " UTF Support
 set encoding=utf-8
-
-"You Complete me Plugin configuration
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Show whitespace
 " MUST be inserted BEFORE the colorscheme command
@@ -109,11 +103,9 @@ map <leader>tm :tabmove
 inoremap <leader><leader> <Esc>
 vnoremap <leader><leader> <Esc>
 
-nnoremap <leader>w :wq!<cr>
-nnoremap <leader>q :q!<cr>
-nnoremap <leader>s :w<cr>
-
-
+nnoremap W :wq!<cr>
+nnoremap Q :q!<cr>
+nnoremap S :w<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -133,10 +125,24 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Always show the status line
 set laststatus=2
 
+" Synatatix Python Checker
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-let g:pymode_trim_whitespaces = 1
-let g:pymode_doc_bind = 'K'
-let g:pymode_virtualenv = 1
 let g:SimpylFold_docstring_preview = 0
-nnoremap <buffer> <leader>e :w <bar> :exec '! clear; python3' shellescape(@%, 1)<cr>
+nnoremap <buffer> R :w <bar> :exec '! clear; python3' shellescape(@%, 1)<cr>
+let g:jedi#use_tabs_not_buffers = 1
+autocmd FileType python setlocal completeopt-=preview
+
+" Python Syntax Checker Mapping
+autocmd FileType python map <buffer> C :call flake8#Flake8()<CR>
+
+" Syntax highlightet python_highlight_all=1
