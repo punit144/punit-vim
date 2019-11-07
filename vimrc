@@ -132,7 +132,7 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 " Format the status line
@@ -146,3 +146,7 @@ autocmd FileType python setlocal completeopt-=preview
 autocmd FileType python map <buffer> C :call flake8#Flake8()<CR>
 
 " Syntax highlightet python_highlight_all=1
+
+" Vim arline tab bar enable
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='badwolf'
