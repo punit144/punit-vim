@@ -140,6 +140,7 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ 
 let g:SimpylFold_docstring_preview = 0
 nnoremap <buffer> R :w <bar> :exec '! clear; python3' shellescape(@%, 1)<cr>
 let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#use_splits_not_buffers = "right"
 autocmd FileType python setlocal completeopt-=preview
 
 " Python Syntax Checker Mapping
