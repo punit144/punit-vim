@@ -125,3 +125,6 @@ autocmd FileType python map <buffer> C :call flake8#Flake8()<CR>
 " Vim arline tab bar enable
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='badwolf'
+
+" Tag Bar
+nmap T :TagbarToggle<CR>
