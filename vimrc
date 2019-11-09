@@ -66,20 +66,20 @@ map <silent> <leader><cr> :noh<cr>
 " Close the current buffer
 map ; :bd<cr>
 
-map H :bnext<cr>
-map J :bprevious<cr>
+map hh :bnext<cr>
+map jj :bprevious<cr>
 
 " Useful mappings for managing tabs
-map N :tabnew<cr>
-map M :tabclose<cr>
+map nn :tabnew<cr>
+map nm :tabclose<cr>
 
 
 inoremap <leader><leader> <Esc>
 vnoremap <leader><leader> <Esc>
 
-nnoremap W :wq!<cr>
-nnoremap Q :q!<cr>
-nnoremap S :w<cr>
+nnoremap ww :wq!<cr>
+nnoremap qq :q!<cr>
+nnoremap fs :w<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -113,7 +113,7 @@ let g:syntastic_check_on_wq = 0
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 let g:SimpylFold_docstring_preview = 0
-nnoremap <buffer> R :w <bar> :exec '! clear; python3' shellescape(@%, 1)<cr>
+nnoremap <buffer> pr :w <bar> :exec '! clear; python3' shellescape(@%, 1)<cr>
 let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#use_splits_not_buffers = "right"
 autocmd FileType python setlocal completeopt-=preview
