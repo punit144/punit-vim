@@ -1,11 +1,63 @@
 filetype off
 filetype plugin indent on
 syntax on
+
+" Pathogen Configuration for autoload plugins during startup
 set nocp
 set rtp+=~/.vim/autoload/pathogen.vim
 call pathogen#infect()
 call pathogen#helptags()
+
+"Global Mapping
 let mapleader=","
+
+"Local Mappings
+"Buffer Explorer
+map <leader>e :Explore<cr>
+
+" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+map <space> /
+map <c-space> ?
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><cr> :noh<cr>
+
+" Close the current buffer
+map <leader>c :bd<cr>
+
+map <leader>b :bnext<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>tc :tabclose<cr>
+
+inoremap <leader><leader> <Esc>
+vnoremap <leader><leader> <Esc>
+
+nnoremap W :wq!<cr>
+nnoremap Q :q!<cr>
+nnoremap S :w<cr>
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Run Python Code from Vim
+nnoremap <buffer> R :w <bar> :exec '! clear; python3' shellescape(@%, 1)<cr>
+
+" Python Syntax Checker Mapping
+autocmd FileType python map <buffer> C :call flake8#Flake8()<CR>
+
+" Tag Bar
+nmap <leader>; :TagbarToggle<CR>
 
 " Showing line numbers and length
 set number  " show line numbers
@@ -33,9 +85,9 @@ set smartcase
 
 " Disable stupid backup and swap files - they trigger too many events
 " for file system watchers
-set nobackup
-set nowritebackup
-set noswapfile
+" set nobackup
+" set nowritebackup
+" set noswapfile
 
 " UTF Support
 set encoding=utf-8
@@ -55,47 +107,7 @@ set wildignore+=*.pyc
 set wildignore+=*_build/*
 set wildignore+=*/coverage/*
 
-map <C-e> :Explore<cr>
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
-
-" Close the current buffer
-map ; :bd<cr>
-
-map hh :bnext<cr>
-map jj :bprevious<cr>
-
-" Useful mappings for managing tabs
-map nn :tabnew<cr>
-map nm :tabclose<cr>
-
-
-inoremap <leader><leader> <Esc>
-vnoremap <leader><leader> <Esc>
-
-nnoremap ww :wq!<cr>
-nnoremap qq :q!<cr>
-nnoremap fs :w<cr>
-
-" Let 'tl' toggle between this and the last accessed tab
-let g:lasttab = 1
-nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
-au TabLeave * let g:lasttab = tabpagenr()
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-""""""""""""""""""""""""""""""
-" => Status line
-""""""""""""""""""""""""""""""
+" Status line Configuration VimAirline
 " Always show the status line
 set laststatus=2
 
@@ -112,20 +124,15 @@ let g:syntastic_check_on_wq = 0
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-let g:SimpylFold_docstring_preview = 0
-nnoremap <buffer> pr :w <bar> :exec '! clear; python3' shellescape(@%, 1)<cr>
+let g:SimpylFold_docstring_preview = 1
+
 let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#use_splits_not_buffers = "right"
-autocmd FileType python setlocal completeopt-=preview
+autocmd FileType python setlocal completeopt+=preview
 
-" Python Syntax Checker Mapping
-autocmd FileType python map <buffer> C :call flake8#Flake8()<CR>
-
-" Syntax highlightet python_highlight_all=1
+" Syntax highlight
+let python_highlight_all=1
 
 " Vim arline tab bar enable
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='badwolf'
-
-" Tag Bar
-nmap T :TagbarToggle<CR>
