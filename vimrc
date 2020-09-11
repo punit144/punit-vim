@@ -15,10 +15,6 @@ let mapleader=","
 "Buffer Explorer
 map <leader>e :Explore<cr>
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
-
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
 
@@ -26,10 +22,6 @@ map <silent> <leader><cr> :noh<cr>
 map <leader>c :bd<cr>
 
 map <leader>b :bnext<cr>
-
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>tc :tabclose<cr>
 
 inoremap <leader><leader> <Esc>
 vnoremap <leader><leader> <Esc>
@@ -51,7 +43,8 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Run Python Code from Vim
-nnoremap <buffer> R :w <bar> :exec '! clear; python3' shellescape(@%, 1)<cr>
+autocmd FileType python map <buffer> <Leader>. :w<CR>:ter python3 %<CR>
+autocmd FileType python imap <buffer> <Leader>. <esc>:w<CR>:ter python3 %<CR>
 
 " Python Syntax Checker Mapping
 autocmd FileType python map <buffer> C :call flake8#Flake8()<CR>
@@ -85,9 +78,9 @@ set smartcase
 
 " Disable stupid backup and swap files - they trigger too many events
 " for file system watchers
-" set nobackup
-" set nowritebackup
-" set noswapfile
+set nobackup
+set nowritebackup
+set noswapfile
 
 " UTF Support
 set encoding=utf-8
@@ -126,13 +119,19 @@ let g:syntastic_check_on_wq = 0
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 let g:SimpylFold_docstring_preview = 1
 
-let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#use_splits_not_buffers = "right"
-autocmd FileType python setlocal completeopt+=preview
-
-" Syntax highlight
-let python_highlight_all=1
-
 " Vim arline tab bar enable
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='badwolf'
+
+set backspace=indent,eol,start  " more powerful backspacing
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml 
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+set foldmethod=indent
+set foldlevel=20
+
+" For timeout settings
+set timeoutlen=1000
+set ttimeoutlen=0
+set splitbelow
