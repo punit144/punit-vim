@@ -6,13 +6,8 @@ Path : /home/punit144/.vim/bundle
 
 /ctrlp.vim
 /gruvbox
-/jedi-vim
-/molokai
+/jedi-vim (Also install as pip3 install jedi-vim)
 /nerdtree
 /powerline
-/python-mode
 /SimpylFold
 /vim-airline
-/vim-virtualenv
-/YouCompleteMe
-/Zenburn
